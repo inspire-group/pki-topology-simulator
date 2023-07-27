@@ -21,6 +21,17 @@ optional arguments:
 
 This flags specify all input files to the simulation framework. Below they are explained in order.
 
+#### Downloading/preparing data
+Due to Github storage constraints, some of the input files explained below are stored in compressed format and/or in an S3 bucket. To download and decompress all the relevant data, please execute the following commands:
+
+```
+cd data/
+mkdir origins/
+wget --directory-prefix origins/ https://usenix23-artifact-data.s3.us-west-2.amazonaws.com/simul/origin-segments.tar.gz
+tar -xzvf origins/origin-segments.tar.gz --directory origins/
+gzip -d policies/*
+```
+
 ### TOPOLOGY_FILE
 This is a CAIDA AS-relationship dataset topology file. It contains an AS-level Internet topology graph inferred from public BGP data. These are publicly available and are released monthly by CAIDA based on RIB files from public route collectors. The topology file from 2022-03-01 is included in the ```data/topo``` directory for convenience, but other files can be downloaded at https://www.caida.org/catalog/datasets/as-relationships/.
 
@@ -44,7 +55,7 @@ The origins files are not stored in the Github repo due to size constraints. The
 cd data
 wget https://usenix23-artifact-data.s3.us-west-2.amazonaws.com/simul/origin-segments.tar.gz
 tar -xzvf origin-segments.tar.gz
-```.
+```
 
 Valid origins files are in the ```data/origins/origin-segments``` directory. ```data/origins/origin-segments``` contains a 10% subset of the random sample of 1000 ASes used in the paper. This is a rather large simulation. Based the speed of the simulation on a benchmark we performed on a personal computer, this file will take about 60 hours to run.
 

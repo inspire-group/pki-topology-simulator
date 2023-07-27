@@ -21,17 +21,6 @@ optional arguments:
 
 This flags specify all input files to the simulation framework. Below they are explained in order.
 
-#### Downloading/preparing data
-Due to Github storage constraints, some of the input files explained below are stored in compressed format and/or in an S3 bucket. To download and decompress all the relevant data, please execute the following commands:
-
-```
-cd data/
-mkdir origins/
-wget --directory-prefix origins/ https://usenix23-artifact-data.s3.us-west-2.amazonaws.com/simul/origin-segments.tar.gz
-tar -xzvf origins/origin-segments.tar.gz --directory origins/
-gzip -d policies/*
-```
-
 ### TOPOLOGY_FILE
 This is a CAIDA AS-relationship dataset topology file. It contains an AS-level Internet topology graph inferred from public BGP data. These are publicly available and are released monthly by CAIDA based on RIB files from public route collectors. The topology file from 2022-03-01 is included in the ```data/topo``` directory for convenience, but other files can be downloaded at https://www.caida.org/catalog/datasets/as-relationships/.
 
@@ -83,6 +72,17 @@ For one example, the first line of output in ```sim-outputs/nonrpki/out-001.txt`
 ```1000;209102:25640,9321:47824;[1, 2, "gcp_asia_northeast1 60501 209102"]|[1, 2, "gcp_asia_southeast1 60501 209102"]|[1, 1, "gcp_europe_west1 209102"]|[1, 1, "gcp_europe_west2 209102"]|[1, 1, "gcp_europe_west3 209102"]|[1, 1, "gcp_northamerica_northeast2 209102"]|[1, 2, "gcp_us_east4 60501 209102"]|[1, 1, "gcp_us_west1 209102"]|[1, 2, "ec2_ap_northeast_1 60501 209102"]|[1, 2, "ec2_ap_south_1 60501 209102"]|[1, 2, "ec2_ap_southeast_1 60501 209102"]|[1, 2, "ec2_eu_central_1 60501 209102"]|[1, 2, "ec2_eu_north_1 60501 209102"]|[1, 2, "ec2_eu_west_3 60501 209102"]|[1, 2, "ec2_sa_east_1 60501 209102"]|[1, 2, "ec2_us_east_2 60501 209102"]|[1, 2, "ec2_us_west_2 60501 209102"]|[1, 2, "azure_japan_east_tokyo 60501 209102"]|[1, 2, "azure_us_east_2 60501 209102"]|[1, 2, "azure_west_europe 60501 209102"]|[1, 2, "azure_germany_west_central 60501 209102"]|[2, 3, "le_via_west 3356 4766 9321"]```
 
 This line can be read as the 25640 ASes on the Internet routed data for prefix 1000 to AS 209102 in this simulation, while 47824 ASes routed to the attacker AS 9321. The final part of the line provides information about the routing selections at various cloud vantage points modeled in the simulation, which is vital for the resilience of different multiVA deployment configurations. In this simulation, all vantage points except le_via_west routed traffic for prefix 1000 to the true origin AS 25640, hinting to multiVA's strength at detecting an attack that Let's Encrypt's primary vantage point would have "believed."
+
+## Downloading/preparing data
+Due to Github storage constraints, some of the input files explained below are stored in compressed format and/or in an S3 bucket. To download and decompress all the relevant data, please execute the following commands:
+
+```
+cd data/
+mkdir origins/
+wget --directory-prefix origins/ https://usenix23-artifact-data.s3.us-west-2.amazonaws.com/simul/origin-segments.tar.gz
+tar -xzvf origins/origin-segments.tar.gz --directory origins/
+gzip -d policies/*
+```
 
 ## Running simulate.py
 

@@ -39,6 +39,13 @@ For example, the first line of the origins file ```data/origins/origin-segments/
 
 which causes the simulator to run a simulation for an arbitrary prefix indexed by the key ```1000``` that is originated by the ASes 209102 and 138245. This will trigger a full Internet routing simulation for this prefix presuming it is announced by these ASes. The simulator will find the AS-level route used by every AS in the CAIDA topology and determine which of the four origin ASes that route will send its traffic to. In this setup, AS 209102 is a victim AS and AS 138245 is a randomly chosen AS on the Internet that is serving as an adversary in this simulation. By convention, we use the last AS in the origin line to signify the adversary being simulated. The script that process the simulation output make this assumption, but the simulator does not treat the adversary differently than the legitimate origins in the simulations.
 
+The origins files are not stored in the Github repo due to size constraints. The origin files are stored in tar format in an S3 bucket: to downloaded and extract the files in the `data` directory, run the following commands:
+```
+cd data
+wget https://usenix23-artifact-data.s3.us-west-2.amazonaws.com/simul/origin-segments.tar.gz
+tar -xzvf origin-segments.tar.gz
+```.
+
 Valid origins files are in the ```data/origins/origin-segments``` directory. ```data/origins/origin-segments``` contains a 10% subset of the random sample of 1000 ASes used in the paper. This is a rather large simulation. Based the speed of the simulation on a benchmark we performed on a personal computer, this file will take about 60 hours to run.
 
 ### POLICIES_FILE

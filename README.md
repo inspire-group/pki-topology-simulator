@@ -98,12 +98,12 @@ Then cd to the code dir:
 
 Below is an example run command that can be executed from the ```code/``` directory that points to all the default input files contained in the data directory and generates two output files in the ```output``` directory: one is a file with the concise simulation output (```../output/simul800-output.txt```) and the other is the full simulation debug output (```../output/simul800-status-output.txt```). This command also sends the status output to stdout for convenience. (note the -u flag on the python command that allows for status output during the execution of the simulation by avoiding buffering)
 
-```python3 simulate.py -t ../data/topo/20230301.as-rel2.txt -o ../data/origins/origin-segments/origins-seg-000.txt -p ../data/policies/policies-all-prefixes.txt -O ../output/out-000.txt ```
+```python3 simulate.py -t ../data/topo/20220301.as-rel2.txt -o ../data/origins/origin-segments/origins-seg-000.txt -p ../data/policies/policies-all-prefixes.txt -O ../output/out-000.txt ```
 
 This simulation took us 26 minutes on a personal machine with a recent generation CPU. This version of the script is not multi-threaded so it will not benefit from being run on a cluster/HPC node. Once the above simulation command runs, it will generate the standard non-RPKI output files.
 
 Below is a variant of the command that loads the RPKI policies file to run the RPKI simulations and writes the RPKI/ROV output files:
 
-```python3 simulate.py -t ../data/topo/20230301.as-rel2.txt -o ../data/origins/origin-segments/origins-seg-000.txt -p ../data/policies/policies-all-prefixes-rpki.txt -O ../output/out-000.txt ```
+```python3 simulate.py -t ../data/topo/20220301.as-rel2.txt -o ../data/origins/origin-segments/origins-seg-000.txt -p ../data/policies/policies-all-prefixes-rpki.txt -O ../output/out-000.txt ```
 
 Post-processing requires both the standard and RPKI results to apply scenarios of universal RPKI adoption, real-world RPKI-ROA adoption today, and no RPKI usage. The RPKI results should run at a comparable speed to the standard simulations.

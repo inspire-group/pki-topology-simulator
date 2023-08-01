@@ -100,7 +100,7 @@ Below is an example run command that can be executed from the ```code/``` direct
 
 ```python3 simulate.py -t ../data/topo/20220301.as-rel2.txt -o ../data/origins/origin-segments/origins-seg-000.txt -p ../data/policies/policies-all-prefixes.txt -O ../output/out-000.txt ```
 
-This simulation took us 26 minutes on a personal machine with a recent generation CPU. This version of the script is not multi-threaded so it will not benefit from being run on a cluster/HPC node. Once the above simulation command runs, it will generate the standard non-RPKI output files.
+This simulation is expected to take several hours on a personal machine with a recent generation CPU. This version of the script is not multi-threaded so it will not benefit from being run on a cluster/HPC node. Once the above simulation command runs, it will generate the standard non-RPKI output files.
 
 Below is a variant of the command that loads the RPKI policies file to run the RPKI simulations and writes the RPKI/ROV output files:
 
